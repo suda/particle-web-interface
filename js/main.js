@@ -18,7 +18,7 @@ function logIn() {
     return false;
   }
 
-  $('input', context).attr('disabled', 'disabled');
+  $('input', context).prop('disabled', 'disabled');
   $('input[type=submit]', context).val('Logging in...');
 
   jQuery.ajax('https://api.spark.io/oauth/token', {
@@ -36,7 +36,7 @@ function logIn() {
       $('#interface').show();
     },
     error: function(result){
-      $('input', context).removeAttr('disabled', 'disabled');
+      $('input', context).removeProp('disabled', 'disabled');
       $(context).addClass('panel-danger');
       $('input[type=submit]', context).val('Log in');
       $('.alert', context).text(result.responseJSON.error_description).show();
