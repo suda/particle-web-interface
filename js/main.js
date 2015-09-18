@@ -1,5 +1,6 @@
 var token = localStorage.getItem("token");
 var devices = [];
+var endpoint = 'https://api.particle.io'
 
 function logIn() {
   var context = $('#login');
@@ -21,7 +22,7 @@ function logIn() {
   $('input', context).prop('disabled', 'disabled');
   $('input[type=submit]', context).val('Logging in...');
 
-  jQuery.ajax('https://api.spark.io/oauth/token', {
+  jQuery.ajax(endpoint + '/oauth/token', {
     type: 'POST',
     data: {
       'username': $('#email', context).val(),
@@ -56,7 +57,7 @@ function logOut() {
 }
 
 function getDevices(){
-  jQuery.get('https://api.spark.io/v1/devices', {
+  jQuery.get(endpoint + '/v1/devices', {
     'access_token': token
   }, function(result){
     devices = result;
@@ -83,7 +84,7 @@ function getDevices(){
 }
 
 function getDeviceInfo(deviceId) {
-  jQuery.get('https://api.spark.io/v1/devices/' + deviceId, {
+  jQuery.get(endpoint + '/v1/devices/' + deviceId, {
     'access_token': token
   }, function(result){
     $('#devices [data-device-id=' + result.id + '] .spinner').remove();
@@ -138,7 +139,7 @@ function execute(deviceId, func, params) {
   $('#execution-history tbody').prepend(row);
   $('#execution-history').show();
 
-  jQuery.post('https://api.spark.io/v1/devices/' + deviceId + '/' + func + '/', {
+  jQuery.post(endpoint + '/v1/devices/' + deviceId + '/' + func + '/', {
     'access_token': token,
     'args': params
   }, function(result){
@@ -152,7 +153,7 @@ function update(deviceId, variable) {
 
   $('td:nth-child(4)', row).html('<div class="spinner"><div></div><div></div><div></div></div>');
 
-  jQuery.get('https://api.spark.io/v1/devices/' + deviceId + '/' + variable + '/', {
+  jQuery.get(endpoint + '/v1/devices/' + deviceId + '/' + variable + '/', {
     'access_token': token
   }, function(result){
     $('td:nth-child(4)', row).text(result.result);
