@@ -1,6 +1,25 @@
 var token = localStorage.getItem("token");
 var devices = [];
 var endpoint = 'https://api.particle.io'
+var spinnerHtml = '<div class="spinner"><div></div><div></div><div></div></div>';
+var products = {
+  0: {
+    name: 'Core',
+    color: '#04b5f3'
+  },
+  6: {
+    name: 'Photon',
+    color: '#f3cb00'
+  },
+  8: {
+    name: 'P1',
+    color: '#f3cb00'
+  },
+  10: {
+    name: 'Electron',
+    color: '#eb543c'
+  },
+};
 
 function logIn() {
   var context = $('#login');
@@ -68,7 +87,9 @@ function getDevices(){
       for (i in result) {
         var device = result[i];
 
-        devicesString += '<tr data-device-id="' + device['id'] + '"><td><strong>' + device['name'] + '</strong><div class="spinner"><div></div><div></div><div></div></div></td>' +
+        devicesString += '<tr data-device-id="' + device['id'] + '"><td>' +
+                         getProductHtml(device['product_id']) +
+                         '</td><td><strong>' + device['name'] + '</strong>' + spinnerHtml +'</td>' +
                          '<td class="small">' + device['id'] + '</td>' +
                          '<td>' + (device['connected'] ? '<span class="label label-success">ONLINE</span>' : '') + '</td></tr>';
 
@@ -162,6 +183,16 @@ function update(deviceId, variable) {
 
 function clearHistory() {
   $('#execution-history tbody tr').remove();
+}
+
+function getProductHtml(productId) {
+  if (Object.keys(products).indexOf(productId.toString()) === -1) {
+    return '<span class="label label-default">Unknown</span> ';
+  } else {
+    var product = products[productId];
+    return '<span class="label" style="background: ' + product.color + '">' +
+           product.name + '</span> ';
+  }
 }
 
 $(function() {
