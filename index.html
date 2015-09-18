@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Spark Core Web Interface</title>
+  <title>Particle Cloud Web Interface</title>
 
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -28,7 +28,7 @@
     <div class="row" id="login" style="display:none;">
       <div class="col-md-6 col-md-offset-3">
         <div class="panel panel-default">
-          <div class="panel-heading"><strong>Log in to Spark Cloud</strong></div>
+          <div class="panel-heading"><strong>Log in to Particle Cloud</strong></div>
           <div class="panel-body">
             <form role="form" onsubmit="return logIn()">
               <div class="form-group">
@@ -52,8 +52,8 @@
     <div id="interface" style="display:none;">
       <div class="row">
         <div class="col-md-12">
-          <div class="panel panel-default" id="cores">
-            <div class="panel-heading"><strong>Cores</strong><button class="btn btn-warning pull-right btn-xs" onclick="logOut()">Logout</button></div>
+          <div class="panel panel-default" id="devices">
+            <div class="panel-heading"><strong>Devices</strong><button class="btn btn-warning pull-right btn-xs" onclick="logOut()">Logout</button></div>
             <div class="panel-body">
               <div class="progress">
                 <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="1" style="width: 100%"></div>
@@ -72,7 +72,7 @@
                 <thead>
                   <tr>
                     <td>Name</td>
-                    <td>Core</td>
+                    <td>Device</td>
                   </tr>
                 </thead>
                 <tbody></tbody>
@@ -110,7 +110,7 @@
                   <tr>
                     <td>Name</td>
                     <td>Type</td>
-                    <td>Core</td>
+                    <td>Device</td>
                     <td>Value</td>
                   </tr>
                 </thead>
@@ -128,8 +128,8 @@
 
   <footer>
     <div class="container">
-      <iframe src="http://ghbtns.com/github-btn.html?user=suda&repo=spark-web-interface&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="62" height="20"></iframe>
-      <iframe src="http://ghbtns.com/github-btn.html?user=suda&repo=spark-web-interface&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="80" height="20"></iframe>
+      <iframe src="http://ghbtns.com/github-btn.html?user=suda&repo=particle-web-interface&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="62" height="20"></iframe>
+      <iframe src="http://ghbtns.com/github-btn.html?user=suda&repo=particle-web-interface&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="80" height="20"></iframe>
       <iframe src="http://ghbtns.com/github-btn.html?user=suda&type=follow&count=true" allowtransparency="true" frameborder="0" scrolling="0"width="165" height="20"></iframe>
     </div>
   </footer>

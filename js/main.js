@@ -78,7 +78,7 @@ function getDevices(){
       devicesString = '<h5>No devices found</h5>';
     }
 
-    $('#cores .panel-body').html(devicesString);
+    $('#devices .panel-body').html(devicesString);
   });
 }
 
@@ -86,7 +86,7 @@ function getDeviceInfo(deviceId) {
   jQuery.get('https://api.spark.io/v1/devices/' + deviceId, {
     'access_token': token
   }, function(result){
-    $('#cores [data-device-id=' + result.id + '] .spinner').remove();
+    $('#devices [data-device-id=' + result.id + '] .spinner').remove();
 
     // Show functions
     if (result.functions != null && result.functions.length > 0) {
