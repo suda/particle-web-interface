@@ -118,7 +118,8 @@ function getDeviceInfo(deviceId) {
         $('#functions tbody').append(
           '<tr><td><strong>' + func + '</strong></td>' +
           '<td>' + result.name + '</td>' +
-          '<td><button class="btn btn-default btn-xs" onclick="execute(\'' + result.id + '\', \'' + func + '\', null)">Execute</button></td></tr>'
+          '<td><button class="btn btn-primary btn-xs" onclick="execute(\'' + result.id + '\', \'' + func + '\', \'\')">Call</button></td>' +
+          '<td><button class="btn btn-primary btn-xs" onclick="execute(\'' + result.id + '\', \'' + func + '\', null)">Call w/ params</button></td></tr>'
         );
       }
       $('#functions').show();
@@ -134,7 +135,7 @@ function getDeviceInfo(deviceId) {
           '<td>' + type + '</td>' +
           '<td>' + result.name + '</td>' +
           '<td>?</td>' +
-          '<td><button class="btn btn-default btn-xs" onclick="update(\'' + result.id + '\', \'' + variable + '\')">Update</button></td></tr>'
+          '<td><button class="btn btn-primary btn-xs" onclick="update(\'' + result.id + '\', \'' + variable + '\')">Update</button></td></tr>'
         );
       }
       $('#variables').show();
@@ -143,18 +144,22 @@ function getDeviceInfo(deviceId) {
 }
 
 function execute(deviceId, func, params) {
-  if (params == null) params = prompt('Any parameters?');
-  if (params == null) params = '';
+  if (params === null) params = prompt('Any parameters?');
+  if (params === null) params = '';
 
-  var deviceName = devices.reduce(function(previous, current, index, array){
-    return array[index].id == deviceId ? array[index].name : null;
-  });
+  var deviceName = null;
+  for (var i = 0; i < devices.length; i++) {
+    var device = devices[i];
+    if (device.id == deviceId) {
+      deviceName = device.name;
+    }
+  }
 
   var row = $(
     '<tr><td><strong>' + deviceName + '-&gt;' + func + '</strong></td>' +
     '<td>' + params + '</td>' +
     '<td><div class="spinner"><div></div><div></div><div></div></div></td>' +
-    '<td><button class="btn btn-default btn-xs" onclick="execute(\'' + deviceId + '\', \'' + func + '\', \'' + params + '\')">Execute</button></td></tr>'
+    '<td><button class="btn btn-primary btn-xs" onclick="execute(\'' + deviceId + '\', \'' + func + '\', \'' + params + '\')">Call</button></td></tr>'
   );
 
   $('#execution-history tbody').prepend(row);
