@@ -4,19 +4,19 @@ var endpoint = 'https://api.particle.io'
 var spinnerHtml = '<div class="spinner"><div></div><div></div><div></div></div>';
 var products = {
   0: {
-    name: 'Core',
+    name: 'C<span class="hidden-xs">ore</span>',
     color: '#04b5f3'
   },
   6: {
-    name: 'Photon',
+    name: 'P<span class="hidden-xs">hoton</span>',
     color: '#f3cb00'
   },
   8: {
-    name: 'P1',
+    name: '<span class="hidden-xs">P</span>1',
     color: '#f3cb00'
   },
   10: {
-    name: 'Electron',
+    name: 'E<span class="hidden-xs">lectron</span>',
     color: '#eb543c'
   },
 };
@@ -90,8 +90,8 @@ function getDevices(){
         devicesString += '<tr data-device-id="' + device['id'] + '"><td>' +
                          getProductHtml(device['product_id']) +
                          '</td><td><strong>' + device['name'] + '</strong>' + spinnerHtml +'</td>' +
-                         '<td class="small">' + device['id'] + '</td>' +
-                         '<td>' + (device['connected'] ? '<span class="label label-success">ONLINE</span>' : '') + '</td></tr>';
+                         '<td class="small"><span class="hidden-xs">' + device['id'] + '</span></td>' +
+                         '<td>' + (device['connected'] ? '<span class="label label-success">O<span class="hidden-xs">NLINE</span></span>' : '') + '</td></tr>';
 
         getDeviceInfo(device['id']);
       }
@@ -118,8 +118,10 @@ function getDeviceInfo(deviceId) {
         $('#functions tbody').append(
           '<tr><td><strong>' + func + '</strong></td>' +
           '<td>' + result.name + '</td>' +
-          '<td><button class="btn btn-primary btn-xs" onclick="execute(\'' + result.id + '\', \'' + func + '\', \'\')">Call</button></td>' +
-          '<td><button class="btn btn-primary btn-xs" onclick="execute(\'' + result.id + '\', \'' + func + '\', null)">Call w/ params</button></td></tr>'
+          '<td><button class="btn btn-primary btn-xs" onclick="execute(\'' + result.id + '\', \'' + func + '\', \'\')">' +
+          '<span class="hidden-xs">Call</span><span class="visible-xs-*">()</span></button></td>' +
+          '<td><button class="btn btn-primary btn-xs" onclick="execute(\'' + result.id + '\', \'' + func + '\', null)">' +
+          '<span class="hidden-xs">Call w/ params</span><span class="visible-xs-*">(...)</span></button></td></tr>'
         );
       }
       $('#functions').show();
@@ -159,7 +161,8 @@ function execute(deviceId, func, params) {
     '<tr><td><strong>' + deviceName + '-&gt;' + func + '</strong></td>' +
     '<td>' + params + '</td>' +
     '<td><div class="spinner"><div></div><div></div><div></div></div></td>' +
-    '<td><button class="btn btn-primary btn-xs" onclick="execute(\'' + deviceId + '\', \'' + func + '\', \'' + params + '\')">Call</button></td></tr>'
+    '<td><button class="btn btn-primary btn-xs" onclick="execute(\'' + deviceId + '\', \'' + func + '\', \'' + params + '\')">' +
+    '<span class="hidden-xs">Call</span><span class="visible-xs-*">()</span></button></td></tr>'
   );
 
   $('#execution-history tbody').prepend(row);
