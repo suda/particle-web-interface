@@ -19,6 +19,18 @@ var products = {
     name: 'E<span class="hidden-xs">lectron</span>',
     color: '#eb543c'
   },
+  88: {
+    name: '<span class="hidden-xs">RB</span>D<span class="hidden-xs">uo</span>',
+    color: '#f72200'
+  },
+  103: {
+    name: 'B<span class="hidden-xs">luz</span>',
+    color: '#2d6fa3'
+  },
+  269: {
+    name: 'B<span class="hidden-xs">luzGW</span>',
+    color: '#1b4564'
+  },
 };
 
 function logIn() {
